@@ -6,48 +6,6 @@ body {
     color: #333;
 }
 
-.card {
-    max-width: 300px;
-    margin: 80px auto;
-    padding: 20px;
-    background: #fff;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    border-radius: 4px;
-}
-
-.card h2 {
-    margin-top: 0;
-    text-align: center;
-}
-
-.card label {
-    display: block;
-    margin-top: 10px;
-}
-
-.card input {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    box-sizing: border-box;
-}
-
-.card button {
-    margin-top: 15px;
-    width: 100%;
-    padding: 10px;
-    background-color: #007acc;
-    color: white;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-}
-
-.card button:hover {
-    background-color: #005f9d;
-}
 
 .hidden {
     display: none;

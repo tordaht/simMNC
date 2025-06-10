@@ -1,5 +1,3 @@
-const loginForm = document.getElementById('login-form');
-const loginCard = document.getElementById('login');
 const dashboard = document.getElementById('dashboard');
 const statusPanel = document.getElementById('status-panel');
 
@@ -13,18 +11,18 @@ let running = false;
 let animationId = null;
 const bacteria = [];
 
-
-const messages = [
-    'Checking credentials...',
-    'Connecting to repository...',
-    'Repository sync complete.',
-    'Preparing pull request...',
-    'Pull request created successfully.',
-    'Waiting for CI results...',
-    'Build passed! Ready to merge.'
-];
-let msgIndex = 0;
-
+    'Sistem hazır.',
+    'Simülasyon parametreleri yükleniyor.',
+    'Bakteri popülasyonu gözlemleniyor.',
+    'Veriler güncellendi.'
+    const ttl = important ? 60000 : 30000; // milisaniye
+    setTimeout(() => {
+        div.classList.add('fade-out');
+        setTimeout(() => statusPanel.removeChild(div), 1000);
+    }, ttl);
+function statusUpdate() {
+    addMessage(`Bakteri sayısı: ${bacteria.length}`);
+}
 
 function addMessage(text, important = false) {
     const div = document.createElement('div');
@@ -74,15 +72,12 @@ function update() {
         if (b.x < 0 || b.x > canvas.width) b.vx *= -1;
         if (b.y < 0 || b.y > canvas.height) b.vy *= -1;
     }
-    draw();
-    if (running) {
-        animationId = requestAnimationFrame(update);
-    }
-}
-
-function start() {
-    if (!running) {
-        running = true;
+// Başlangıçta gösterge paneli hazır olur ve durum mesajları döngüsü başlatılır.
+dashboard.classList.remove('hidden');
+cycleMessages();
+setInterval(cycleMessages, 10000); // her 10 saniyede yeni mesaj
+setInterval(statusUpdate, 10000); // populasyon bilgisi
+start();
         addMessage('Simulation started', true);
         update();
     }
