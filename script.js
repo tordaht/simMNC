@@ -13,6 +13,7 @@ let running = false;
 let animationId = null;
 const bacteria = [];
 
+
 const messages = [
     'Checking credentials...',
     'Connecting to repository...',
@@ -23,6 +24,7 @@ const messages = [
     'Build passed! Ready to merge.'
 ];
 let msgIndex = 0;
+
 
 function addMessage(text, important = false) {
     const div = document.createElement('div');
@@ -37,6 +39,7 @@ function addMessage(text, important = false) {
             setTimeout(() => statusPanel.removeChild(div), 1000);
         }, 300000); // 5 minutes
     }
+
 }
 
 function cycleMessages() {
@@ -98,12 +101,3 @@ addBtn.addEventListener('click', () => {
     addMessage('New bacterium added');
 });
 
-
-loginForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    loginCard.classList.add('hidden');
-    dashboard.classList.remove('hidden');
-    cycleMessages();
-    setInterval(cycleMessages, 5000);
-    start();
-});
