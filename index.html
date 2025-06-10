@@ -4,21 +4,26 @@
 <meta charset="UTF-8">
 <title>Bacteria Simulation</title>
 <style>
-body { font-family: Arial, sans-serif; display: flex; }
-#sim { border: 1px solid #333; margin-right: 20px; }
-#controls { max-width: 200px; }
+body { font-family: Arial, sans-serif; display: flex; background:#f4f4f4; }
+#sim { border: 1px solid #333; margin-right: 20px; background:#fff; }
+#sidebar { width: 300px; }
+#controls { margin-bottom:20px; }
+#status { height:200px; overflow-y:auto; background:#222; color:#0f0; padding:5px; font-size:12px; }
 </style>
 </head>
 <body>
 <canvas id="sim" width="600" height="400"></canvas>
-<div id="controls">
-<h3>Parameters</h3>
-<label>Grass growth rate: <input type="range" id="growth" min="0" max="1" step="0.01" value="0.1"></label>
-<p>Herbivores: <span id="herbCount">0</span></p>
-<p>Predators: <span id="predCount">0</span></p>
-<p>Omnivores: <span id="omniCount">0</span></p>
-<button id="start">Start</button>
-<button id="stop">Stop</button>
+<div id="sidebar">
+  <div id="controls">
+    <h3>Parameters</h3>
+    <label>Grass growth rate: <input type="range" id="growth" min="0" max="1" step="0.01" value="0.1"></label>
+    <p>Herbivores: <span id="herbCount">0</span></p>
+    <p>Predators: <span id="predCount">0</span></p>
+    <p>Omnivores: <span id="omniCount">0</span></p>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+  </div>
+  <div id="status"></div>
 </div>
 <script>
 class Cell {
@@ -55,14 +60,23 @@ class World {
     for(let c of this.creatures){
       c.move(this);
       const cell=this.grid[c.y][c.x];
-      if(c.type!='pred' && cell.grass>0){cell.grass=0; c.energy+=5;}
+      if(c.type!='pred' && cell.grass>0){
+        cell.grass=0; c.energy+=5;
+        addLog(c.type+" ate grass at ("+c.x+","+c.y+")");
+      }
       // check eat other
       if(c.type!='herb'){
         const prey=this.creatures.find(o=>o!=c && o.x==c.x && o.y==c.y && o.type=='herb');
-        if(prey){prey.energy=0; c.energy+=10;}
+        if(prey){
+          prey.energy=0; c.energy+=10;
+          addLog(c.type+" ate herbivore at ("+c.x+","+c.y+")");
+        }
       }
-      if(c.energy>40){ c.energy/=2; newCreatures.push(new Creature(c.type,c.x,c.y)); }
-      if(c.energy>0) newCreatures.push(c);
+      if(c.energy>40){
+        c.energy/=2; newCreatures.push(new Creature(c.type,c.x,c.y));
+        addLog(c.type+" reproduced at ("+c.x+","+c.y+")");
+      }
+      if(c.energy>0) newCreatures.push(c); else addLog(c.type+" died");
     }
     this.creatures=newCreatures;
   }
@@ -74,6 +88,12 @@ for(let i=0;i<10;i++) world.creatures.push(new Creature('herb',Math.floor(Math.r
 for(let i=0;i<5;i++) world.creatures.push(new Creature('pred',Math.floor(Math.random()*60),Math.floor(Math.random()*40)));
 for(let i=0;i<5;i++) world.creatures.push(new Creature('omni',Math.floor(Math.random()*60),Math.floor(Math.random()*40)));
 let running=false;
+let log=[];
+function addLog(msg){
+  log.unshift(msg);
+  if(log.length>20) log.pop();
+  document.getElementById('status').innerText=log.join('\n');
+}
 function draw(){
   ctx.clearRect(0,0,canvas.width,canvas.height);
   for(let y=0;y<world.height;y++){
@@ -82,8 +102,17 @@ function draw(){
     }
   }
   for(let c of world.creatures){
+    const px=c.x*10+5, py=c.y*10+5;
     ctx.fillStyle=c.type=='herb'?'blue':c.type=='pred'?'red':'purple';
-    ctx.fillRect(c.x*10,c.y*10,10,10);
+    ctx.beginPath();
+    if(c.type=='herb'){
+      ctx.arc(px,py,5,0,Math.PI*2);
+    } else if(c.type=='pred'){
+      ctx.moveTo(px,py-5); ctx.lineTo(px-5,py+5); ctx.lineTo(px+5,py+5); ctx.closePath();
+    } else {
+      ctx.moveTo(px,py-5); ctx.lineTo(px-5,py); ctx.lineTo(px,py+5); ctx.lineTo(px+5,py); ctx.closePath();
+    }
+    ctx.fill();
   }
   document.getElementById('herbCount').textContent=world.creatures.filter(c=>c.type=='herb').length;
   document.getElementById('predCount').textContent=world.creatures.filter(c=>c.type=='pred').length;
@@ -96,9 +125,10 @@ function loop(){
     requestAnimationFrame(loop);
   }
 }
-document.getElementById('start').onclick=()=>{ if(!running){ running=true; loop(); } };
-document.getElementById('stop').onclick=()=>{ running=false; };
+document.getElementById('start').onclick=()=>{ if(!running){ running=true; addLog('Simulation started'); loop(); } };
+document.getElementById('stop').onclick=()=>{ running=false; addLog('Simulation stopped'); };
 draw();
+addLog('Simulation ready');
 </script>
 </body>
 </html>
