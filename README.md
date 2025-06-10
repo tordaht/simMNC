@@ -7,6 +7,7 @@ as important.
 
 ## Running locally
 
+
 For a static preview you can open `index.html` directly in your browser. To use
 the sohbet (chat) system start the small Express server:
 
@@ -16,6 +17,7 @@ node server/index.js
 
 Then navigate to `http://localhost:3000` and the page will connect to the
 Socket.IO backend.
+
 
 ## Features
 
@@ -30,3 +32,4 @@ Socket.IO backend.
 `docs/advanced_simulator.md` dokümanında NeoMagv8 projesi temel alınarak
 hazırlanan ayrıntılı mimari açıklamaları bulabilirsiniz. Türkçe örnek ajan kodu
 ise `agent_ornek.py` dosyasındadır.
+

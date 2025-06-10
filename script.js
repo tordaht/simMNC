@@ -18,17 +18,20 @@ socket.on('chatMessage', msg => {
     chatLog.scrollTop = chatLog.scrollHeight;
 });
 
+
 let running = false;
 let animationId = null;
 const bacteria = [];
 
 const messages = [
+
     'Sistem hazır.',
     'Simülasyon parametreleri yükleniyor.',
     'Bakteri popülasyonu gözlemleniyor.',
     'Veriler güncellendi.'
 ];
 let msgIndex = 0;
+
 
 function addMessage(text, important = false) {
     const div = document.createElement('div');
@@ -42,6 +45,7 @@ function addMessage(text, important = false) {
         div.classList.add('fade-out');
         setTimeout(() => statusPanel.removeChild(div), 1000);
     }, ttl);
+
 }
 
 function cycleMessages() {
@@ -89,6 +93,7 @@ function update() {
 function start() {
     if (!running) {
         running = true;
+
         addMessage('Simulation started', true);
         update();
     }
@@ -133,3 +138,4 @@ cycleMessages();
 setInterval(cycleMessages, 10000); // her 10 saniyede yeni mesaj
 setInterval(statusUpdate, 10000); // populasyon bilgisi
 start();
+
