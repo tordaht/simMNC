@@ -23,12 +23,19 @@
             </div>
 
             <div id="graphs" class="graphs">Graphs coming soon...</div>
-            <div id="chat-interface" class="chat">Chat interface placeholder</div>
+            <div id="chat-interface" class="chat">
+                <div id="chat-log" class="chat-log"></div>
+                <div class="chat-controls">
+                    <input id="chat-input" type="text" placeholder="Mesaj yaz" />
+                    <button id="chat-send">Gönder</button>
+                </div>
+            </div>
         </div>
 
         <section id="status-panel" class="status-menu"></section>
-
     </div>
+
+    <script src="/socket.io/socket.io.js"></script>
 
     <script src="script.js"></script>
 </body>

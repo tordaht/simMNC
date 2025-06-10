@@ -75,6 +75,28 @@ header {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
+.chat-log {
+    height: 150px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+.chat-controls {
+    display: flex;
+}
+
+.chat-controls input {
+    flex: 1;
+    padding: 5px;
+}
+
+.chat-controls button {
+    margin-left: 5px;
+    padding: 5px 10px;
+}
+
 
 @keyframes fadeOut {
     from { opacity: 1; }
