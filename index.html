@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulation Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="login" class="card">
+        <h2>Login</h2>
+        <form id="login-form">
+            <label for="username">Username</label>
+            <input type="text" id="username" required>
+            <label for="password">Password</label>
+            <input type="password" id="password" required>
+            <button type="submit">Enter</button>
+        </form>
+    </div>
+
+    <div id="dashboard" class="hidden">
+        <header>
+            <h1>Simulation Dashboard</h1>
+        </header>
+
+        <div id="main-panel">
+            <canvas id="petri-dish" width="600" height="400"></canvas>
+
+            <div id="controls" class="controls">
+                <button id="start-btn">Start</button>
+                <button id="pause-btn">Pause</button>
+                <button id="add-bacteria">Add Bacteria</button>
+            </div>
+
+            <div id="graphs" class="graphs">Graphs coming soon...</div>
+            <div id="chat-interface" class="chat">Chat interface placeholder</div>
+        </div>
+
+        <section id="status-panel" class="status-menu"></section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

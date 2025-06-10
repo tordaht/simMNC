@@ -1,0 +1,123 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.card {
+    max-width: 300px;
+    margin: 80px auto;
+    padding: 20px;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-radius: 4px;
+}
+
+.card h2 {
+    margin-top: 0;
+    text-align: center;
+}
+
+.card label {
+    display: block;
+    margin-top: 10px;
+}
+
+.card input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-sizing: border-box;
+}
+
+.card button {
+    margin-top: 15px;
+    width: 100%;
+    padding: 10px;
+    background-color: #007acc;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.card button:hover {
+    background-color: #005f9d;
+}
+
+.hidden {
+    display: none;
+}
+
+header {
+    background-color: #007acc;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+.status-menu {
+    margin: 20px;
+    padding: 10px;
+    background: white;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    height: 200px;
+    overflow-y: auto;
+}
+
+.status-item {
+    padding: 5px;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.status-item:last-child {
+    border-bottom: none;
+}
+
+.status-item.fade-out {
+    animation: fadeOut 1s forwards;
+}
+
+.status-item.important {
+    color: #b30000;
+    font-weight: bold;
+}
+
+#main-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+}
+
+#petri-dish {
+    background: #fff;
+    border: 1px solid #ccc;
+}
+
+.controls {
+    margin-top: 10px;
+}
+
+.controls button {
+    margin-right: 5px;
+    padding: 5px 10px;
+}
+
+.graphs, .chat {
+    margin-top: 20px;
+    background: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
