@@ -83,6 +83,41 @@ header {
     animation: fadeOut 1s forwards;
 }
 
+.status-item.important {
+    color: #b30000;
+    font-weight: bold;
+}
+
+#main-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+}
+
+#petri-dish {
+    background: #fff;
+    border: 1px solid #ccc;
+}
+
+.controls {
+    margin-top: 10px;
+}
+
+.controls button {
+    margin-right: 5px;
+    padding: 5px 10px;
+}
+
+.graphs, .chat {
+    margin-top: 20px;
+    background: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+
 @keyframes fadeOut {
     from { opacity: 1; }
     to { opacity: 0; }

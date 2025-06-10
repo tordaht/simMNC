@@ -23,7 +23,22 @@
         <header>
             <h1>Simulation Dashboard</h1>
         </header>
-        <section id="status-menu" class="status-menu"></section>
+
+        <div id="main-panel">
+            <canvas id="petri-dish" width="600" height="400"></canvas>
+
+            <div id="controls" class="controls">
+                <button id="start-btn">Start</button>
+                <button id="pause-btn">Pause</button>
+                <button id="add-bacteria">Add Bacteria</button>
+            </div>
+
+            <div id="graphs" class="graphs">Graphs coming soon...</div>
+            <div id="chat-interface" class="chat">Chat interface placeholder</div>
+        </div>
+
+        <section id="status-panel" class="status-menu"></section>
+
     </div>
 
     <script src="script.js"></script>
